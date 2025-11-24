@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
-
+os.environ["OPENAI_API_KEY"] = "sdsdsd"
 
 
 class SimpleRAG:
@@ -85,11 +85,11 @@ class Query(BaseModel):
 @app.on_event("startup")
 async def startup_event():
     try:
-        rag_system.load_documents("documents/data.txt")
+        rag_system.load_documents("data/data.txt")
         print("RAG система успешно загружена!")
     except FileNotFoundError as e:
         print(f"ОШИБКА: {e}")
-        print("Пожалуйста, убедитесь, что файл 'documents/data.txt' существует и содержит данные.")
+        print("Пожалуйста, убедитесь, что файл 'data/data.txt' существует и содержит данные.")
     except Exception as e:
         print(f"Неизвестная ошибка при загрузке RAG: {e}")
 
